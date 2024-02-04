@@ -5,7 +5,7 @@ import pandas as pd
 
 # Podaci
 df = pd.read_csv('data/raspberry.csv')
-cols = ['Hectograms Per Hectare', 'Metric Tons']
+cols = ['Hectograms Per Hectare', 'Thousand US Dollars PPP = 2004–2006', 'Hectares', 'Metric Tons']
 X = df[cols]
 y = df['US Dollars Per Metric Ton']
 

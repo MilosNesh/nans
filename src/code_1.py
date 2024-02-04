@@ -12,10 +12,12 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPRegressor
 
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
+
 # Ucitavanje podataka
 
 df = pd.read_csv('data/raspberrybd.csv', sep=',')
-df = df.iloc[1::5]
 print(df.head)
 
 #   * Thousand US Dollars PPP = 2004–2006,
@@ -24,7 +26,7 @@ print(df.head)
 #   * Metric Tons, 
 #   * US Dollars Per Metric Ton
 
-cols = ['Hectograms Per Hectare',  'Metric Tons']
+cols = ['Hectograms Per Hectare', 'Thousand US Dollars PPP = 2004–2006', 'Hectares', 'Metric Tons']
 x = df[cols]
 y = df['US Dollars Per Metric Ton']
 
@@ -84,7 +86,11 @@ X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
 # Kreiranje i obuka modela
-model = MLPRegressor(activation='relu', hidden_layer_sizes=(100, 50), learning_rate_init=0.001, max_iter=1000, random_state=42)
+model = MLPRegressor(activation='relu',
+                    hidden_layer_sizes=(100, 50),
+                    learning_rate_init=0.009,
+                    max_iter=1500, random_state=42)
+
 model.fit(X_train, y_train.ravel())
 
 # Predviđanje na test skupu 
@@ -99,7 +105,7 @@ print(f"Mean Squared Error on Test Data: {mse}")
 
 from sklearn.linear_model import HuberRegressor
 
-X_train, X_test, y_train, y_test = train_test_split(x, y, train_size=0.7, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(x, y, train_size=0.7, shuffle=True, random_state=42)
 
 from sklearn.model_selection import cross_val_score
 huber_reg = HuberRegressor()
@@ -126,34 +132,54 @@ print(f'Mean Squared Error(HuberRegressor): {mse}')
 
 
 # Proba podaci za Cile
-#x_chile = np.array([[40669, 36503.896415, 4810, 19562]])
-x_chile = np.array([[40669, 19562]])
+x_chile = np.array([[40669, 36503.896415, 4810, 19562]])
+#x_chile = np.array([[40669, 36503.896415]])
 y_pravo_chile = 3638.7
 
 y_pred_chile = rf_model.predict(x_chile)
 print(f"(RF) Stvarna cijena maline u Chileu 2018. god je {y_pravo_chile}, dok je nasa predikcija {y_pred_chile}")
 
-y_pred_chile = huber_reg.predict(x_chile)
-# print(f"Stvarna cijena maline u Chileu 2018. god je {y_pravo_chile}, dok je nasa predikcija {y_pred_chile}")
+# y_pred_chile = huber_reg.predict(x_chile)
+# # print(f"(HR)Stvarna cijena maline u Chileu 2018. god je {y_pravo_chile}, dok je nasa predikcija {y_pred_chile}")
 
 scaler = StandardScaler()
 x_chile = scaler.fit_transform(x_chile)
 y_pred_chile = model.predict(x_chile)
 print(f"Stvarna cijena maline u Chileu 2018. god je {y_pravo_chile}, dok je nasa predikcija {y_pred_chile}") 
-
+print()
 
 # Cile 2012
-# x_chile = np.array([[38661,33890.864673, 4473, 17293]])
-x_chile = np.array([[38661, 17293]])
+x_chile = np.array([[38661,33890.864673, 4473, 17293]])
+#
+#x_chile = np.array([[38661,33890.864673]])
 y_pravo_chile = 4158.9
 
 y_pred_chile = rf_model.predict(x_chile)
-print(f"Stvarna cijena maline u Chileu 2012. god je {y_pravo_chile}, dok je nasa predikcija {y_pred_chile}")
+print(f"(RF)Stvarna cijena maline u Chileu 2012. god je {y_pravo_chile}, dok je nasa predikcija {y_pred_chile}")
 
-y_pred_chile = huber_reg.predict(x_chile)
-print(f"Stvarna cijena maline u Chileu 2012. god je {y_pravo_chile}, dok je nasa predikcija {y_pred_chile}")
+# y_pred_chile = huber_reg.predict(x_chile)
+# print(f"Stvarna cijena maline u Chileu 2012. god je {y_pravo_chile}, dok je nasa predikcija {y_pred_chile}")
 
 scaler = StandardScaler()
 x_chile = scaler.fit_transform(x_chile)
 y_pred_chile = model.predict(x_chile)
 print(f"Stvarna cijena maline u Chileu 2012. god je {y_pravo_chile}, dok je nasa predikcija {y_pred_chile}")
+print()
+
+# Cile 2015
+x_chile = np.array([[39539, 35793.556008, 4625, 18287]])
+#
+#x_chile = np.array([[39539, 18287]])
+y_pravo_chile = 4672.4
+
+y_pred_chile = rf_model.predict(x_chile)
+print(f"(RF)Stvarna cijena maline u Chileu 2015. god je {y_pravo_chile}, dok je nasa predikcija {y_pred_chile}")
+
+# y_pred_chile = huber_reg.predict(x_chile)
+# print(f"Stvarna cijena maline u Chileu 2012. god je {y_pravo_chile}, dok je nasa predikcija {y_pred_chile}")
+
+scaler = StandardScaler()
+x_chile = scaler.fit_transform(x_chile)
+y_pred_chile = model.predict(x_chile)
+print(f"Stvarna cijena maline u Chileu 2015. god je {y_pravo_chile}, dok je nasa predikcija {y_pred_chile}")
+
