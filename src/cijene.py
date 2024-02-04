@@ -1,4 +1,4 @@
-# ovde iscrtavam grafike cijena, kolicnu proizvedenih malina i poredim ih da bi dosao do odredjenjih zakljucka
+# ovde iscrtavam grafike cijena maline i poredim ih da bi dosao do odredjenjih zakljucka
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -113,6 +113,8 @@ plt.plot(x, y, c='g', label='BiH')
 plt.legend()
 plt.show()
 
+# Mexico
+
 dfm = pd.read_excel('data/Mexico.xlsx')
 x_m = dfm['Date']
 y_m = dfm['US Dollars Per Metric Ton']
@@ -120,4 +122,27 @@ plt.plot(x_m, y_m, c='purple', label='Mexico')
 
 plt.legend()
 plt.savefig('image/MexicoPrice.png')
+plt.show()
+
+# Hungary
+
+dfm = pd.read_excel('data/Hungary.xlsx')
+x_m = dfm['Date']
+y_m = dfm['US Dollars Per Metric Ton']
+plt.plot(x_m, y_m, c='purple', label='Hungary')
+plt.legend()
+plt.savefig('image/HungaryPrice.png')
+plt.show()
+
+# Poland VS Hungary
+dfp = pd.read_excel('data/Poland.xlsx')
+xp = dfp['Date']
+yp = dfp['US Dollars Per Metric Ton']
+plt.plot(xp, yp, label='Poland')
+dfm = pd.read_excel('data/Hungary.xlsx')
+x_m = dfm['Date']
+y_m = dfm['US Dollars Per Metric Ton']
+plt.plot(x_m, y_m, c='purple', label='Hungary')
+plt.legend()
+plt.savefig('image/HungaryPolandPrice.png')
 plt.show()
