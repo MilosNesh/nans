@@ -146,3 +146,21 @@ plt.plot(x_m, y_m, c='purple', label='Hungary')
 plt.legend()
 plt.savefig('image/HungaryPolandPrice.png')
 plt.show()
+
+#   Canada
+dfc = pd.read_excel('data/Canada.xlsx')
+x_c = dfc['Date']
+y_c = dfc['US Dollars Per Metric Ton']
+plt.plot(x_c, y_c, c='orange', label='Canada')
+plt.legend()
+plt.savefig('image/CanadaPrice.png')
+plt.show()
+
+#   Azerbejdzan 
+dfa = pd.read_excel('data/Azerbaijan.xlsx')
+x_a = dfa['Date']
+y_a = dfa['US Dollars Per Metric Ton']
+plt.plot(x_a, y_a, c='orange', label='Azerbaijan')
+plt.legend()
+plt.savefig('image/AzerbaijanPrice.png')
+plt.show()
