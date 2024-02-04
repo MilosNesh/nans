@@ -40,6 +40,7 @@ y_c = dfc['US Dollars Per Metric Ton']
 plt.plot(x_c, y_c, c='orange', label='Canada')
 
 plt.legend()
+plt.savefig('image/2008Price.png')
 plt.show()
 
 #   Gore navedenih 6 drzava imaju istu najvecu cijenu maline u istoj godini i to u 2008.
@@ -81,6 +82,7 @@ plt.plot(x_m, y_m, c='purple', label='Mexico')
 
 plt.legend()
 plt.title('Mexico VS USA')
+plt.savefig('image/MexicoUSAPrice.png')
 plt.show()
 
 #   Periodu 2000-2005 je bio najturbolentniji u odnosu na cijenu. Cijena je imala nejvece oscilacije u tom periodu.
@@ -109,4 +111,13 @@ x = df['Date']
 y = df['US Dollars Per Metric Ton']
 plt.plot(x, y, c='g', label='BiH')
 plt.legend()
+plt.show()
+
+dfm = pd.read_excel('data/Mexico.xlsx')
+x_m = dfm['Date']
+y_m = dfm['US Dollars Per Metric Ton']
+plt.plot(x_m, y_m, c='purple', label='Mexico')
+
+plt.legend()
+plt.savefig('image/MexicoPrice.png')
 plt.show()

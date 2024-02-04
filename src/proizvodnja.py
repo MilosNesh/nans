@@ -39,7 +39,13 @@ x_c = dfc['Date']
 y_c = dfc['Metric Tons']
 plt.plot(x_c, y_c, c='orange', label='Canada')
 
+dfsr = pd.read_excel('data/Raspberries Production in Serbia.xlsx')
+x_sr = dfsr['Date'] 
+y_sr = dfsr['Metric Tons']
+plt.plot(x_sr, y_sr, c='black', label='Serbia')
+
 plt.legend()
+plt.savefig('image/Production.png')
 plt.show()
 
 #   Azerbejdzan 
@@ -69,6 +75,9 @@ dfsr = pd.read_excel('data/Raspberries Production in Serbia.xlsx')
 x_sr = dfsr['Date'] 
 y_sr = dfsr['Metric Tons']
 plt.plot(x_sr, y_sr, c='r', label='Serbia')
+plt.legend()
+plt.savefig('image/SerbiaProduction.png')
+plt.show()
 
 #   Cile
 # Cile cunami 2014.
@@ -76,6 +85,9 @@ dfc = pd.read_excel('data/Raspberries Production in Chile.xlsx')
 x_c = dfc['Date']
 y_c = dfc['Metric Tons']
 plt.plot(x_c, y_c, c='y', label='Chile')
+plt.legend()
+plt.savefig('image/ChileProduction.png')
+plt.show()
 
 #   Poljska 
 dfp = pd.read_excel('data/Poland.xlsx')
@@ -84,6 +96,7 @@ yp = dfp['Metric Tons']
 plt.plot(xp, yp, label='Poland')
 
 plt.legend()
+plt.savefig('image/PolandProduction.png')
 plt.show()
 
 #https://www.b92.net/biz/vesti/srbija/malina-iz-cilea-je-u-stvari-poljska-816271   clanak 
@@ -93,5 +106,14 @@ dfm = pd.read_excel('data/Mexico.xlsx')
 x_m = dfm['Date']
 y_m = dfm['Metric Tons']
 plt.plot(x_m, y_m, c='purple', label='Mexico')
+plt.legend()
+plt.show()
+
+#   Ukrajina
+dfuk = pd.read_excel('data/Ukraine.xlsx')
+x_uk = dfuk['Date']
+y_uk = dfuk['Metric Tons']
+plt.plot(x_uk, y_uk, c='y', label='Ukraine')
+
 plt.legend()
 plt.show()
